@@ -37,7 +37,7 @@ router.post('/', (req, res) => {
     }
 
 })
-// - PUT - //
+// - PUT - // update takes in and ID and action. Schema same as post
 router.put('/:id', (req, res) => {
     console.log('actionRouter put/')
     const {id} = req.params
@@ -59,7 +59,19 @@ router.put('/:id', (req, res) => {
     }
     
 })
-// - DEL - //
+// - DEL - // remove() needs an id
+router.delete('/:id', (req, res) => {
+    const {id} = req.params
+
+    actionModel.remove(id)
+    .then(deleted => {
+        res.status(200).json(deleted)
+    })
+    .catch(err => {
+        res.status(500).json(err)
+    })
+
+})
 
 // EXPORTS
 module.exports = router
