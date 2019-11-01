@@ -75,6 +75,22 @@ router.put('/:id', (req, res) => {
     }
 })
 // - DEL - //
+router.delete('/:id', (req, res) => {
+    const {id} = req.params
+
+    projectModel.remove(id)
+    .then(deleted => {
+        if(deleted) {
+            res.status(200).json({ message: 'Project has been deleted.'})
+        } else {
+            res.status(404).json({ message: 'The project with the specified id does not exist.' })
+        }
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json(err)
+    })
+})
 
 // EXPORTS
 module.exports = router
