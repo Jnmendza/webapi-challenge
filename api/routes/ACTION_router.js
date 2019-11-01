@@ -14,10 +14,29 @@ router.get('/:id', (req, res) => {
     })
     .catch( err => {
         console.log(err)
-        res.status.apply(500).json(err)
+        res.status(500).json(err)
     })
 })
-// - POST - //
+// - POST - // Actions Schema are notes and description
+router.post('/', (req, res) => {
+    console.log('actionRouter post/')
+    const notes = req.body.notes
+    const description = req.body.description
+
+    if (!notes && !description && !description.length < 128) {
+        res.status(400).json({ message: 'Please include a description up to 128 characters long and / or notes.'})
+    } else {
+        actionModel.insert(req.body)
+        .then( actions => {
+            res.status(200).json(actions)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({ message: 'Please include notes, description and project Id.' })
+        })
+    }
+
+})
 // - PUT - //
 // - DEL - //
 
