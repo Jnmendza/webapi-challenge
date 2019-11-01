@@ -92,5 +92,19 @@ router.delete('/:id', (req, res) => {
     })
 })
 
+// - GET list of actions - //
+router.get('/:id/actions', (req, res) => {
+    const {id} = req.params
+
+    projectModel.getProjectActions(id)
+    .then(actions => {
+        res.status(200).json(actions)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json(err)
+    })
+})
+
 // EXPORTS
 module.exports = router
