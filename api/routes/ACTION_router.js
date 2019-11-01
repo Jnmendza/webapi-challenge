@@ -18,15 +18,22 @@ router.get('/:id', (req, res) => {
     })
 })
 // - POST - // Actions Schema are notes and description
-router.post('/', (req, res) => {
+router.post('/:project_id', (req, res) => {
     console.log('actionRouter post/')
-    const notes = req.body.notes
-    const description = req.body.description
+    const {project_id} = req.params
 
-    if (!notes && !description && !description.length < 128) {
+    const objToPass = {
+        notes: req.body.notes,
+        description: req.body.description,
+        project_id
+        
+    }
+    console.log(objToPass)
+
+    if (!objToPass.notes && !objToPass.description && !objToPass.description.length < 128) {
         res.status(400).json({ message: 'Please include a description up to 128 characters long and / or notes.'})
     } else {
-        actionModel.insert(req.body)
+        actionModel.insert(objToPass)
         .then( actions => {
             res.status(200).json(actions)
         })
