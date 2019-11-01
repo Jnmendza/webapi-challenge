@@ -27,13 +27,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+    Routing and helpers
+
 - [ ] Describe Middleware?
+
+    It is an array of functions. Similar to an assembly line.
 
 - [ ] Describe a Resource?
 
+    Everything is a resource. The management of resources is done via HTTP methods.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+    Status code of 200
+
 - [ ] How can we partition our application into sub-applications?
+
+    Separate the helpers, routes, and middleware.
 
 ## Project Setup
 

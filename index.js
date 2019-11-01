@@ -12,3 +12,14 @@ I need this code, just don't know where, perhaps should make some middleware, do
 
 Go code!
 */
+
+// IMPORT SERVER
+const server = require('./api/server.js')
+
+// PORT 
+const PORT = process.env.PORT || 8888
+
+// SERVER LISTENING 
+server.listen(PORT, () => {
+    console.log(`=== webAPI Challenge on http://localHost:${PORT}`)
+})
