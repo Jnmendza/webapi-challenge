@@ -38,6 +38,27 @@ router.post('/', (req, res) => {
 
 })
 // - PUT - //
+router.put('/:id', (req, res) => {
+    console.log('actionRouter put/')
+    const {id} = req.params
+    const notes = req.body.notes
+    const description = req.body.description
+    const updatedAction = req.body
+
+    if(!notes && !description && !description.length < 128) {
+        res.status(400).json({ message: 'Please include a description up to 128 characters long and / or notes.' })
+    } else {
+        actionModel.update(id, updatedAction)
+        .then(action => {
+            res.status(200).json(action)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({ message: 'Please include notes, description and project Id.' })
+        })
+    }
+    
+})
 // - DEL - //
 
 // EXPORTS
